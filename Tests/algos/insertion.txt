@@ -1,0 +1,14 @@
+l<-[16,3,20,17,3,5,4,9,2,1,0,0];
+n<-lon(l);
+i<-1;
+tant que i < n faire
+    cle<-l.i;
+    j<-i-1;
+    tant que j >= 0 et l.j > cle faire
+        l.(j+1)<-l.j;
+        j<-j-1
+    ftq;
+    l.(j+1)<-cle;
+    i<-i+1
+ftq;
+afficherTS()

@@ -1,0 +1,39 @@
+afficher("Trois nombres dans l'ordre descenndant, Entrez trois nombres:
+");
+x<-0;
+lire(x);
+y<-0;
+lire(y);
+z<-0;
+lire(z);
+si x>y alors
+	si x>z alors
+		si y>z alors
+			afficher(x);
+			afficher(y);
+			afficher(z)
+		sinon
+			afficher(x);
+                        afficher(z);
+                        afficher(y)
+		fsi
+	sinon
+		afficher(z);
+		afficher(x);
+		afficher(y)
+	fsi
+sinon si y>z alors
+		si z>x alors
+			afficher(y);
+			afficher(z);
+			afficher(x)
+		sinon
+			afficher(y);
+			afficher(x);
+			afficher(z)
+		fsi
+sinon
+	afficher(z);
+	afficher(y);
+	afficher(x)
+fsi

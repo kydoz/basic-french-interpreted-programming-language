@@ -1,0 +1,12 @@
+n<-0;
+afficher("Suite de syracuse, entrez une nombre:
+");
+lire(n);
+tant que n != 1 faire
+        si n%2=0 alors
+            n <- n / 2
+        sinon
+            n <- 3 * n + 1
+	fsi;
+	afficher(n)
+ftq

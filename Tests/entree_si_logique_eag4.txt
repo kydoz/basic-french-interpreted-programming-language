@@ -1,0 +1,5 @@
+x<-10;
+y<-5;
+si non (x*3=10) et x=10 et x*y=50 et non (y=15) alors
+	afficher(1)
+fsi

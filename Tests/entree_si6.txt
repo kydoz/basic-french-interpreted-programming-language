@@ -1,0 +1,8 @@
+x<-10;
+si x<10 alors
+	afficher(1)
+sinon si x>10 alors
+	afficher(2)
+sinon
+	afficher(3)
+fsi

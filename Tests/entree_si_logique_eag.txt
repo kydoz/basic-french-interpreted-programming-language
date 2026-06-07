@@ -1,0 +1,4 @@
+x<-10;
+si x=10 et x=10 alors
+	afficher(1)
+fsi

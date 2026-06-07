@@ -1,0 +1,4 @@
+x<-10;
+si (x*x=10 ou x*x=100) et x*3=3 alors
+	afficher(1)
+fsi

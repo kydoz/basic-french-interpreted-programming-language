@@ -1,0 +1,10 @@
+x<-10;
+si x=10 alors
+	si x/2=5 alors
+		si x*3=30 alors
+			si x*x=100 alors
+				afficher(x)
+			fsi
+		fsi
+	fsi
+fsi

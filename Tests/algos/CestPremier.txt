@@ -1,0 +1,24 @@
+x<-0;
+afficher("Un numero: ");
+lire(x);
+i<-2;
+isPrime<-1;
+si x <= 1 alors
+    isPrime<-0
+fsi;
+tant que i * i <= x faire
+    r<-x;
+    tant que r >= i faire
+        r<-r - i
+    ftq;
+    si r = 0 alors
+        isPrime<-0;
+        i<-x
+    fsi;
+    i<-i+1
+ftq;
+si isPrime = 1 alors
+    afficher("PREMIER")
+sinon
+    afficher("PAS PREMIER")
+fsi

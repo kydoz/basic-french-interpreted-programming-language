@@ -1,0 +1,9 @@
+x<-5.43;
+y <- 3.33333;
+afficherTS();
+afficher(x           + y);
+x<-4.23421;
+y<-3.435443;
+afficherTS();
+afficher(x-y)
+

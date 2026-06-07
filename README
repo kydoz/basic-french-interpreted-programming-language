@@ -1,0 +1,12 @@
+--COMPILATION
+-Les fichiers du programme peuvent être compilés avec la commande habituelle « make ».
+-Le fichier « analyse_lexicale.c » (le lexer) est généré à partir d'un fichier flex « lex.l » inspiré de la correction donnée pour la calculette (la génération de ce fichier est gérée par make).
+
+--EXÉCUTION
+Deux exécutables : « test_lexeme » et « test_syntaxe ».
+Le premier est utilisé pour la vérification des lexèmes, le second pour l'exécution des programmes.
+
+--AUTRES
+- Pour exécuter tous les tests simultanément, exécutez le script shell « tester_le_syntaxe.sh ».
+- Vérification des fuites mémoire par Valgrind, écrite dans le dossier « valgrind_resultats ».
+- Pour visualiser rapidement les résultats (de Valgrind), exécutez le script « verif_leak.sh » présent dans le dossier.

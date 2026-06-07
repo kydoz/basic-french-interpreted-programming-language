@@ -1,0 +1,26 @@
+x<-0;
+afficher("Nombres primes jusqu'a: ");
+lire(x);
+i<-2;
+tant que i <= x faire
+    si i < 2 alors
+        Premier<-0
+    sinon
+        Premier<-1
+    fsi;
+    j<-2;
+    tant que j * j <= i et Premier = 1 faire
+        r<-i;
+        tant que r >= j faire
+            r<-r - j
+        ftq;
+        si r = 0 alors
+            Premier<-0
+        fsi;
+        j<-j+1
+    ftq;
+    si Premier = 1 alors
+        afficher(i)
+    fsi;
+    i<-i+1
+ftq

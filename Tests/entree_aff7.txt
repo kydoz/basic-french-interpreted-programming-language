@@ -1,0 +1,4 @@
+x<-5;
+afficher(x);
+afficher(x*3);
+afficher((x+5)/5*10)

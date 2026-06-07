@@ -1,0 +1,13 @@
+x<-0;
+afficher("combien de termes de la serie fibonacci voulez-vous?: ");
+lire(x);
+a<-0;
+b<-1;
+i<-1;
+tant que i <= x faire
+    afficher(a);
+    c<- a + b;
+    a<- b;
+    b<- c;
+    i<- i+1
+ftq

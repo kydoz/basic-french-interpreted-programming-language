@@ -1,0 +1,6 @@
+x<-5;
+si x<10 alors
+	afficher(x)
+sinon
+	afficher(1)
+fsi

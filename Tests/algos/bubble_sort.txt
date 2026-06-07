@@ -1,0 +1,16 @@
+l<-[11,3,2,7,6,5,4,3,2,1];
+n<-lon(l);
+i<-0;
+tant que i<n faire
+	j<-0;
+        tant que j<(n-i-1) faire
+                si l.j>l.(j+1) alors
+                        tmp<-l.j;
+                        l.j<-l.(j+1);
+                        l.(j+1)<-tmp
+                fsi;
+                j<-j+1
+        ftq;
+        i<-i+1
+ftq;
+afficherTS()

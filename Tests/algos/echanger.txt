@@ -1,0 +1,10 @@
+x<-[1,2,3,4,5];
+y<-[5,4,3,2,1];
+i<-0;
+tant que i<lon(x) et i<lon(y) faire
+	tmp<-x.i;
+	x.i<-y.i;
+	y.i<-tmp;
+	i<-i+1
+ftq;
+afficherTS()

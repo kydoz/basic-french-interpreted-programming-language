@@ -1,0 +1,14 @@
+x<-10;
+si x=10 alors
+	si x/2=5 alors
+		si x*3=30 alors
+			si x*x=10 alors
+				afficher(1)
+			sinon si x*x=20 alors
+				afficher(2)
+			fsi;
+			afficher(3)
+		fsi
+	fsi
+fsi
+

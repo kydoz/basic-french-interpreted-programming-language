@@ -1,0 +1,12 @@
+res <- 1;
+n <- 0;
+afficher("Factorielle, entrez un nombre
+");
+lire(n);
+i <- n;
+tant que i != 1 faire
+	res <- res * i;
+	i <- i -1
+ftq;
+afficher("Résultat: ");
+afficher(res)
