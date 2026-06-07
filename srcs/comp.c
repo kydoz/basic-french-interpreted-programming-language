@@ -5,13 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-// #include "comp.h"
-
-// all this is impressive technically however this is slower than the normal interpreted version
-/*
-This was a fun project, however a future goal should be building a transpiler of the syntax tree into C code
-We learned a way to store future machine learning models which is an exciting prospect
-*/
 
 char *read_string(size_t *idx);
 double evaluate(size_t *idx);
@@ -28,10 +21,10 @@ void evaluate_arbre(size_t *idx, Ast A);
 char *read_string(size_t *idx)
 {
     size_t len = 0;
-    memcpy(&len, temp_bin + *idx, sizeof(size_t));
+    memcpy(&len, objs_temp_bin + *idx, sizeof(size_t));
     *idx += sizeof(size_t);
     char *s = (char *)malloc(sizeof(char) * (len + 1));
-    memcpy(s, temp_bin + *idx, sizeof(char) * len);
+    memcpy(s, objs_temp_bin + *idx, sizeof(char) * len);
     *idx += sizeof(char) * len;
     s[len] = '\0';
     return s;
@@ -102,13 +95,13 @@ double evaluate(size_t *idx)
         }
         break;
     case VALEUR:
-        printf("this is a value\n");
+        //printf("this is a value\n");
         return expr->valeur + expr->partie_fraction;
     case INSTRUCTION:
         switch (expr->operateur)
         {
         case N_IDF:
-            printf("this is a var %s\n", expr->chaine);
+            //printf("this is a var %s\n", expr->chaine);
             // printf("The idf: %s\n", expr->chaine);
             if (estPresentTS(expr->chaine, &v, NULL, NULL, NULL, NULL, NULL) != 1)
             {
@@ -246,7 +239,7 @@ bool evaluate_bool(size_t *idx, Ast A)
 
 Ast read_arbre(size_t *idx)
 {
-    if (temp_bin[(*idx)++] == 0)
+    if (objs_temp_bin[(*idx)++] == 0)
         return NULL;
 
     // int valeur;
@@ -256,9 +249,9 @@ Ast read_arbre(size_t *idx)
     Ast node;
     TypeAst nature;
     TypeOperateur operateur;
-    memcpy(&nature, temp_bin + *idx, sizeof(TypeAst));
+    memcpy(&nature, objs_temp_bin + *idx, sizeof(TypeAst));
     *idx += sizeof(TypeAst);
-    memcpy(&operateur, temp_bin + *idx, sizeof(TypeOperateur));
+    memcpy(&operateur, objs_temp_bin + *idx, sizeof(TypeOperateur));
     *idx += sizeof(TypeOperateur);
 
     switch (nature)
@@ -266,10 +259,10 @@ Ast read_arbre(size_t *idx)
     case VALEUR:
     {
         int valeur = 0;
-        memcpy(&valeur, temp_bin + *idx, sizeof(int));
+        memcpy(&valeur, objs_temp_bin + *idx, sizeof(int));
         *idx += sizeof(int);
         double partie_fraction = 0;
-        memcpy(&partie_fraction, temp_bin + *idx, sizeof(double));
+        memcpy(&partie_fraction, objs_temp_bin + *idx, sizeof(double));
         *idx += sizeof(double);
         node = creer_valeur(valeur, partie_fraction);
         break;
@@ -492,7 +485,7 @@ void evaluate_while(size_t *idx)
 }
 
 Ast read_arbre_rec(size_t *idx) {
-     if (temp_bin[(*idx)++] == 0)
+     if (objs_temp_bin[(*idx)++] == 0)
         return NULL;
 
     // int valeur;
@@ -502,9 +495,9 @@ Ast read_arbre_rec(size_t *idx) {
     Ast node;
     TypeAst nature;
     TypeOperateur operateur;
-    memcpy(&nature, temp_bin + *idx, sizeof(TypeAst));
+    memcpy(&nature, objs_temp_bin + *idx, sizeof(TypeAst));
     *idx += sizeof(TypeAst);
-    memcpy(&operateur, temp_bin + *idx, sizeof(TypeOperateur));
+    memcpy(&operateur, objs_temp_bin + *idx, sizeof(TypeOperateur));
     *idx += sizeof(TypeOperateur);
 
     switch (nature)
@@ -512,10 +505,10 @@ Ast read_arbre_rec(size_t *idx) {
     case VALEUR:
     {
         int valeur = 0;
-        memcpy(&valeur, temp_bin + *idx, sizeof(int));
+        memcpy(&valeur, objs_temp_bin + *idx, sizeof(int));
         *idx += sizeof(int);
         double partie_fraction = 0;
-        memcpy(&partie_fraction, temp_bin + *idx, sizeof(double));
+        memcpy(&partie_fraction, objs_temp_bin + *idx, sizeof(double));
         *idx += sizeof(double);
         node = creer_valeur(valeur, partie_fraction);
         break;

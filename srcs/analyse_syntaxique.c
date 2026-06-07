@@ -145,7 +145,7 @@ void analyser(char *fichier, bool to_compile) {
     if (to_compile==true) {
         FILE* fptr;
     
-        if ((fptr = fopen("temp.bin", "wb")) == NULL) {
+        if ((fptr = fopen("objs/temp.bin", "wb")) == NULL) {
             printf("Error! opening file");
 
             exit(1);
@@ -154,8 +154,8 @@ void analyser(char *fichier, bool to_compile) {
 
             write_arbre(*A, fptr);
             fclose(fptr);
-            system("xxd -i temp.bin > temp.h");
-            system("make comp");
+            system("xxd -i objs/temp.bin > include/temp.h");
+            system("make COMP=1");
     }
     liberer_arbre(*A);
     liberer_TS();

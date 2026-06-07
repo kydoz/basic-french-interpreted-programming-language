@@ -1,4 +1,5 @@
 *.o
+*.bin
 test_lexeme
 test_syntaxe
 comp

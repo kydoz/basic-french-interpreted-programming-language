@@ -1,6 +1,6 @@
-#line 2 "analyse_lexicale.c"
+#line 2 "srcs/analyse_lexicale.c"
 
-#line 4 "analyse_lexicale.c"
+#line 4 "srcs/analyse_lexicale.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -546,8 +546,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "lex.l"
-#line 3 "lex.l"
+#line 1 "srcs/lex.l"
+#line 3 "srcs/lex.l"
   /* Inspiré par Spécification de l'analyse lexicale de la V1 de la calculette
          pour l'outil flex */
 
@@ -589,13 +589,13 @@ char *yytext;
 
 
   
-#line 593 "analyse_lexicale.c"
+#line 593 "srcs/analyse_lexicale.c"
 #define YY_NO_INPUT 1
-#line 52 "lex.l"
+#line 52 "srcs/lex.l"
  /* ajouter option nounput, noinput pour eviter des warnings (on les utilise pas) */
  /* expressions régulières définissant les catégories lexicales */
  /*pour le regle STRING: https://stackoverflow.com/questions/2039795/regular-expression-for-a-string-literal-in-flex-lex*/
-#line 599 "analyse_lexicale.c"
+#line 599 "srcs/analyse_lexicale.c"
 
 #define INITIAL 0
 
@@ -810,13 +810,13 @@ YY_DECL
 		}
 
 	{
-#line 90 "lex.l"
+#line 90 "srcs/lex.l"
 
 
   /* actions effectuées par l'analyseur lors de la reconnaissance d'un lexème */
 
  /* Pour les séparateurs on met juste à jour la valeur de numcol */
-#line 820 "analyse_lexicale.c"
+#line 820 "srcs/analyse_lexicale.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -885,24 +885,24 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 95 "lex.l"
+#line 95 "srcs/lex.l"
 {numcol = numcol + 1;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 96 "lex.l"
+#line 96 "srcs/lex.l"
 {numcol = numcol + 4;}
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 97 "lex.l"
+#line 97 "srcs/lex.l"
 {numcol = 1;}
 	YY_BREAK
 /* lexeme de type ENTIER */
 case 4:
 YY_RULE_SETUP
-#line 101 "lex.l"
+#line 101 "srcs/lex.l"
 {
 		initLC() ;
 		LC.nature = ENTIER; 
@@ -914,7 +914,7 @@ YY_RULE_SETUP
 /* lexeme de type NOMBRE_A_VIRGULES */ /*METTRE UNE ESPACE AVANT LES COMMENTAIRES (marche pas sans)*/
 case 5:
 YY_RULE_SETUP
-#line 109 "lex.l"
+#line 109 "srcs/lex.l"
 {
     initLC();
     LC.nature=NOMBRE_A_VIRGULES;
@@ -926,7 +926,7 @@ YY_RULE_SETUP
 case 6:
 /* rule 6 can match eol */
 YY_RULE_SETUP
-#line 117 "lex.l"
+#line 117 "srcs/lex.l"
 {
     initLC();
     LC.nature=STRING;
@@ -939,7 +939,7 @@ YY_RULE_SETUP
 /* lexeme de type AFF */
 case 7:
 YY_RULE_SETUP
-#line 127 "lex.l"
+#line 127 "srcs/lex.l"
 {
     initLC();
     LC.nature=AFF;
@@ -949,7 +949,7 @@ YY_RULE_SETUP
 /*lexeme de type SEPINST*/
 case 8:
 YY_RULE_SETUP
-#line 134 "lex.l"
+#line 134 "srcs/lex.l"
 {
     initLC();
     LC.nature=SEPINST;
@@ -958,7 +958,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 140 "lex.l"
+#line 140 "srcs/lex.l"
 {
     initLC();
     LC.nature=LIRE;
@@ -967,7 +967,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 146 "lex.l"
+#line 146 "srcs/lex.l"
 {
     initLC();
     LC.nature=AFFICHER;
@@ -976,7 +976,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 152 "lex.l"
+#line 152 "srcs/lex.l"
 {
     initLC();
     LC.nature=AFFICHER_TS;
@@ -985,7 +985,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 158 "lex.l"
+#line 158 "srcs/lex.l"
 {
     initLC();
     LC.nature=TANQUE;
@@ -994,7 +994,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 164 "lex.l"
+#line 164 "srcs/lex.l"
 {
     initLC();
     LC.nature=FAIRE;
@@ -1003,7 +1003,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 170 "lex.l"
+#line 170 "srcs/lex.l"
 {
     initLC();
     LC.nature=FTANQUE;
@@ -1012,7 +1012,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 176 "lex.l"
+#line 176 "srcs/lex.l"
 {
     initLC() ;
 		LC.nature = LON_LISTE; 
@@ -1021,7 +1021,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 182 "lex.l"
+#line 182 "srcs/lex.l"
 {
     initLC();
       if (strcmp(yytext, "!=")==0)
@@ -1048,7 +1048,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 206 "lex.l"
+#line 206 "srcs/lex.l"
 {
   initLC();
   if (strcmp(yytext, "et")==0)
@@ -1062,7 +1062,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 217 "lex.l"
+#line 217 "srcs/lex.l"
 {
     initLC();
     LC.nature=SI;
@@ -1071,7 +1071,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 223 "lex.l"
+#line 223 "srcs/lex.l"
 {
     initLC();
     LC.nature=ALORS;
@@ -1080,7 +1080,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 229 "lex.l"
+#line 229 "srcs/lex.l"
 {
     initLC();
     LC.nature=SINON;
@@ -1089,7 +1089,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 235 "lex.l"
+#line 235 "srcs/lex.l"
 {
     initLC();
     LC.nature=FSI;
@@ -1099,7 +1099,7 @@ YY_RULE_SETUP
 /* lexeme de type IDF */
 case 22:
 YY_RULE_SETUP
-#line 242 "lex.l"
+#line 242 "srcs/lex.l"
 {
     initLC();
     LC.nature=IDF;
@@ -1109,7 +1109,7 @@ YY_RULE_SETUP
 /* lexeme de type OPERATEUR */
 case 23:
 YY_RULE_SETUP
-#line 249 "lex.l"
+#line 249 "srcs/lex.l"
 {
 		initLC() ;
 		switch (yytext[0]) {
@@ -1125,7 +1125,7 @@ YY_RULE_SETUP
 case 24:
 /* rule 24 can match eol */
 YY_RULE_SETUP
-#line 261 "lex.l"
+#line 261 "srcs/lex.l"
 {
     initLC();
     LC.nature=ENTIER_LISTE;
@@ -1150,7 +1150,7 @@ YY_RULE_SETUP
 case 25:
 /* rule 25 can match eol */
 YY_RULE_SETUP
-#line 282 "lex.l"
+#line 282 "srcs/lex.l"
 {
     initLC();
     LC.nature=NOMBRE_A_VIRGULES_LISTE;
@@ -1178,7 +1178,7 @@ YY_RULE_SETUP
 case 26:
 /* rule 26 can match eol */
 YY_RULE_SETUP
-#line 306 "lex.l"
+#line 306 "srcs/lex.l"
 {
     initLC();
     LC.nature=STRING_LISTE;
@@ -1214,7 +1214,7 @@ YY_RULE_SETUP
 /* lexeme de type PARO */
 case 27:
 YY_RULE_SETUP
-#line 342 "lex.l"
+#line 342 "srcs/lex.l"
 {
 		initLC() ;
 		LC.nature = PARO; 
@@ -1224,7 +1224,7 @@ YY_RULE_SETUP
 /* lexeme de type PARF */
 case 28:
 YY_RULE_SETUP
-#line 349 "lex.l"
+#line 349 "srcs/lex.l"
 {
 		initLC() ;
 		LC.nature = PARF; 
@@ -1233,7 +1233,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 355 "lex.l"
+#line 355 "srcs/lex.l"
 {
   initLC() ;
 		LC.nature = POINT; 
@@ -1242,7 +1242,7 @@ YY_RULE_SETUP
 	YY_BREAK
 /* lexeme de type FIN_DE_SEQUENCE  */
 case YY_STATE_EOF(INITIAL):
-#line 362 "lex.l"
+#line 362 "srcs/lex.l"
 {
 		initLC() ;	
 		LC.nature=FIN_SEQUENCE ; 
@@ -1252,7 +1252,7 @@ case YY_STATE_EOF(INITIAL):
 /* Tous les autres cas  sont des erreurs lexicales  ...  */
 case 30:
 YY_RULE_SETUP
-#line 372 "lex.l"
+#line 372 "srcs/lex.l"
 {
 		initLC() ;	
 		LC.nature=ERREUR ;
@@ -1261,10 +1261,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 378 "lex.l"
+#line 378 "srcs/lex.l"
 ECHO;
 	YY_BREAK
-#line 1268 "analyse_lexicale.c"
+#line 1268 "srcs/analyse_lexicale.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2238,7 +2238,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 378 "lex.l"
+#line 378 "srcs/lex.l"
 
 
 	/* fonctions auxilliaires fournies/utilisées par l'analyseur */

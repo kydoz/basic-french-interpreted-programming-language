@@ -1,51 +1,66 @@
+CC=gcc
+CC_LEX=flex
 
-all:test_lexeme test_syntaxe
+SRCDIR=srcs
+OBJDIR=objs
+EXECDIR=bin
+INCLUDEDIR=include
 
-analyse_lexicale.c: lex.l analyse_lexicale.h
-	flex -o $@ $<
-
-comp: comp.o ast_parcours.o ast_construction.o table_symbole.o
-	gcc -g -Wall -Ofast -o $@ $^
-
-comp.o: comp.c temp.h ast_construction.h ast_parcours.h table_symbole.h
-	gcc -g -Wall -Ofast -c $<
-
-test_lexeme: analyse_lexicale.o lecture_caracteres.o  test_lexeme.o
-	gcc -g -Wall -Ofast -o test_lexeme analyse_lexicale.o  lecture_caracteres.o  test_lexeme.o
-
-test_syntaxe: analyse_syntaxique.o analyse_lexicale.o lecture_caracteres.o test_syntaxe.o ast_construction.o ast_parcours.o table_symbole.o
-	gcc -g -Wall -Ofast -o $@ $^
-
-analyse_lexicale.o: analyse_lexicale.c analyse_lexicale.h lecture_caracteres.h
-	gcc -g -Wall -Ofast -c analyse_lexicale.c
-
-analyse_syntaxique.o: analyse_syntaxique.c analyse_lexicale.h lecture_caracteres.h ast_construction.h ast_parcours.h table_symbole.h
-	gcc -g -Wall -Ofast -c $<
-
-lecture_caracteres.o: lecture_caracteres.h lecture_caracteres.c
-	gcc -g -Wall -Ofast -c lecture_caracteres.c
-
-test_lexeme.o: analyse_lexicale.h
-	gcc -g -Wall -Ofast -c test_lexeme.c
-
-test_syntaxe.o: test_syntaxe.c analyse_syntaxique.h analyse_lexicale.h
-	gcc -g -Wall -Ofast -c $<
+DEBUG_FLAGS=-g
+OPTIMIZATION_FLAG=-Ofast
+CPPFLAGS=-I$(INCLUDEDIR)
 
 
-# TP3
-ast_construction.o: ast_construction.c type_ast.h
-	gcc -g -Wall -Ofast -c ast_construction.c
+EXEC_SYNTAXE=$(EXECDIR)/test_syntaxe
+EXEC_LEXEME=$(EXECDIR)/test_lexeme
+EXEC_COMP=$(EXECDIR)/comp
+EXECS=$(EXEC_LEXEME) $(EXEC_SYNTAXE) $(EXEC_COMP)
+RES_LEX=$(SRCDIR)/analyse_lexicale.c
 
-ast_parcours.o: ast_parcours.c type_ast.h table_symbole.h
-	gcc -g -Wall -Ofast -c ast_parcours.c
+ifdef LEXEME
+SRCS=$(filter-out $(SRCDIR)/comp.c $(SRCDIR)/test_syntaxe.c,$(wildcard $(SRCDIR)/*.c))
+EXEC=$(EXEC_LEXEME)
+else ifdef COMP
+SRCS=$(filter-out $(SRCDIR)/test_lexeme.c $(SRCDIR)/test_syntaxe.c,$(wildcard $(SRCDIR)/*.c))
+EXEC=$(EXEC_COMP)
+else
+SRCS=$(filter-out $(SRCDIR)/comp.c $(SRCDIR)/test_lexeme.c,$(wildcard $(SRCDIR)/*.c))
+EXEC=$(EXEC_SYNTAXE)
+endif
 
-essai_ast.o: essai_ast.c  ast_construction.h  ast_parcours.h  type_ast.h
-	gcc -g -Wall -Ofast -c essai_ast.c
 
-table_symbole.o: table_symbole.c table_symbole.h
-	gcc -g -Wall -Ofast -c $<
+OBJS=$(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+HDRS=$(wildcard $(SRCDIR)/*.h)
+
+ifdef UBSAN # valgrind continue a marcher avec ubsan
+CFLAGS+= -fsanitize=undefined $(DEBUG_FLAGS)
+LDLIBS:=-lubsan  $(LDLIBS)
+endif
+
+ifdef ASAN
+CFLAGS+=-fsanitize=address $(DEBUG_FLAGS)
+LDLIBS:=-lasan $(LDLIBS)
+endif
+
+
+.PHONY: clean all debug comp fuzz
+
+all: $(RES_LEX) $(EXEC)
+
+debug: clean
+debug: CFLAGS += $(DEBUG_FLAGS)
+debug: OPTIMIZATION_FLAG = -O1
+debug: all
+
+$(RES_LEX): $(SRCDIR)/lex.l $(INCLUDEDIR)/analyse_lexicale.h
+	$(CC_LEX) -o $@ $<
+
+$(EXEC): $(OBJS)
+	$(CC) $(OPTIMIZATION_FLAG) $^ -o $@ -Wl,-Bdynamic $(LDLIBS)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c $(HDRS)
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
 
 clean:
-	rm -f  test_lexeme test_syntaxe analyse_lexicale.c *.o
-
+	-rm -f  $(EXECS) $(SRCDIR)/$(RES_LEX) $(OBJDIR)/*
 
