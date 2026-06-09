@@ -146,6 +146,39 @@ verif_ubsan:
 	@$(MAKE) clean
 
 
+create_fuzz_in: #add test files that dont read (lire function) from user (execution won't hang)
+	@loop() {
+		if [ ! -d "$${1}" ]; then return; fi
 
+		for file in $${1}/*; do
+
+			if [ -d "$${file}" ] && [ "$$(basename $${file})" != "testes_robustesse" ]; then loop "$${file}"; fi
+
+			if [ -f "$${file}" ] && [ ! -n "$$(cat $${file} | grep "lire")" ]; then cp $${file} fuzz_in/; fi
+
+		done
+	}
+	@mkdir -p fuzz_in
+	@loop Tests
+
+
+fuzz:
+	@if [ ! -n "$${AFL_PATH}" ]; then echo "AFL_PATH vide, ajoutez le chemin"; exit; fi
+	@if [ -n "$(FUZZ_UBSAN)" ]; then export AFL_USE_UBSAN=1; else export AFL_USE_ASAN=1; fi
+	@echo "ASAN $${AFL_USE_ASAN}"
+	@echo "UBSAN $${AFL_USE_UBSAN}"
+	export AFL_DONT_OPTIMIZE=1
+	@echo "compile the pgm for AFL"
+	@$(MAKE) create_fuzz_in debug CC=$${AFL_PATH}/afl-gcc-fast
+	echo "run AFL !"
+	export AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 
+	export AFL_SKIP_CPUFREQ=1 
+	if [ -n "$(TIMEOUT)" ]; then
+		$${AFL_PATH}/afl-fuzz -m none -i fuzz_in/ -o fuzz_out/ ./$(EXEC) @@ &
+		sleep $${TIMEOUT} #timeout, peut etre supprime plus tard
+		kill $$! #$! est le pid de dernier commande execute
+	else
+		$${AFL_PATH}/afl-fuzz -m none -i fuzz_in/ -o fuzz_out/ ./$(EXEC) @@
+	fi
 
 

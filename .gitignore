@@ -6,3 +6,5 @@ comp
 valgrind_resultats/*.txt
 asan_resultats/*.txt
 ubsan_resultats/*.txt
+fuzz_out/
+fuzz_in/
