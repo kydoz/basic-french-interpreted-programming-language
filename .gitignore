@@ -3,3 +3,6 @@
 test_lexeme
 test_syntaxe
 comp
+valgrind_resultats/*.txt
+asan_resultats/*.txt
+ubsan_resultats/*.txt
