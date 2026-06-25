@@ -176,7 +176,7 @@ fuzz:
 	if [ -n "$(TIMEOUT)" ]; then
 		$${AFL_PATH}/afl-fuzz -m none -i fuzz_in/ -o fuzz_out/ ./$(EXEC) @@ &
 		sleep $${TIMEOUT} #timeout, peut etre supprime plus tard
-		kill $$! #$! est le pid de dernier commande execute
+		kill $$! #$! est le pid de dernier commande du dernier plan execute
 	else
 		$${AFL_PATH}/afl-fuzz -m none -i fuzz_in/ -o fuzz_out/ ./$(EXEC) @@
 	fi
