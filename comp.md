@@ -13,4 +13,4 @@ First of all, we check if the `-c` or `--compile` argument is defined, if so, th
 
 ### Compilation step  
 
-After extraction discussed above, the program can finally be compiled. The program to compile is "comp.c" which traverses the AST included in "temp.h". The compilation is done by calling make with the COMP variable defined (more on the makefile [here]()). The resulting binary is called "comp" and can be found in the bin folder.
+After extraction discussed above, the program can finally be compiled. The program to compile is "comp.c" which traverses the AST included in "temp.h". The compilation is done by calling make with the COMP variable defined (more on the makefile [here](https://github.com/kydoz/academic-interpreted-programming-language/blob/main/make.md)). The resulting binary is called "comp" and can be found in the bin folder.

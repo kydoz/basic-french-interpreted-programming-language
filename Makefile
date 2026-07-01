@@ -162,7 +162,7 @@ create_fuzz_in: #add test files that dont read (lire function) from user (execut
 	@loop Tests
 
 
-fuzz:
+fuzz: create_fuzz_in
 	@if [ ! -n "$${AFL_PATH}" ]; then echo "AFL_PATH vide, ajoutez le chemin"; exit; fi
 	@if [ -n "$(FUZZ_UBSAN)" ]; then export AFL_USE_UBSAN=1; else export AFL_USE_ASAN=1; fi
 	@echo "ASAN $${AFL_USE_ASAN}"

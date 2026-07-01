@@ -26,7 +26,7 @@ Creates a directory of test files for the fuzzer as valid input meaning all prog
 
 #### fuzz
 
-A target which runs [AFL++](https://github.com/aflplusplus/aflplusplus) on the interpreter. Does this by first rebuilding the project with the afl compiler and `create_fuzz_in` and then running the fuzzer on the interpreter. This target has two variables associated: `FUZZ_UBSAN`, `TIMEOUT`. See **variables** section for more details.  
+A target which runs [AFL++](https://github.com/aflplusplus/aflplusplus) on the interpreter.This is achieved by first rebuilding the project with the afl compiler and `create_fuzz_in` and then running the fuzzer on the interpreter. This target has two variables associated: `FUZZ_UBSAN`, `TIMEOUT`. See **variables** section for more details.  
 
 ### Variables
 
