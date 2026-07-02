@@ -68,6 +68,7 @@ clean:
 
 .ONESHELL: #https://www.gnu.org/software/make/manual/html_node/One-Shell.html
 test: clean all
+	@if [ "$(EXEC)" = $(EXEC_COMP) ]; then echo "Cannot execute target with executable $(EXEC)"; exit 1; fi
 	@declare -a texts=("Tests Simples\n" "Algos\n" "Testes robustesse\n")
 	@declare -a locations=("Tests" "Tests/algos" "Tests/testes_robustesse")
 
@@ -84,12 +85,14 @@ test: clean all
 			name="$$(basename $${test})"
 			name="$${name%.*}"
 			./$(EXEC) $${test}
+			sleep 2
 			echo
 		done
 	done
 
 
 verif_valgrind:
+	@if [ "$(EXEC)" = $(EXEC_COMP) ]; then echo "Cannot execute target with executable $(EXEC)"; exit 1; fi
 	@if [ ! -e valgrind_resultats ] || [ ! -d valgrind_resultats ]; then mkdir valgrind_resultats; fi
 	@$(MAKE) debug
 	@declare -a texts=("Tests Simples\n" "Algos\n" "Testes robustesse\n")
@@ -119,6 +122,7 @@ verif_valgrind:
 	@$(MAKE) clean
 
 verif_asan:
+	@if [ "$(EXEC)" = $(EXEC_COMP) ]; then echo "Cannot execute target with executable $(EXEC)"; exit 1; fi
 	@if [ ! -e asan_resultats ] || [ ! -d asan_resultats ]; then mkdir asan_resultats; fi
 	@$(MAKE) debug ASAN=1
 	@declare -a texts=("Tests Simples\n" "Algos\n" "Testes robustesse\n")
@@ -144,6 +148,7 @@ verif_asan:
 
 
 verif_ubsan:
+	@if [ "$(EXEC)" = $(EXEC_COMP) ]; then echo "Cannot execute target with executable $(EXEC)"; exit 1; fi
 	@if [ ! -e ubsan_resultats ] || [ ! -d ubsan_resultats ]; then mkdir ubsan_resultats; fi
 	@$(MAKE) debug UBSAN=1
 	@declare -a texts=("Tests Simples\n" "Algos\n" "Testes robustesse\n")
@@ -185,6 +190,7 @@ create_fuzz_in: #add test files that dont read (lire function) from user (execut
 
 
 fuzz: create_fuzz_in
+	@if [ "$(EXEC)" = $(EXEC_COMP) ]; then echo "Cannot execute target with executable $(EXEC)"; exit 1; fi
 	@if [ ! -n "$${AFL_PATH}" ]; then echo "AFL_PATH vide, ajoutez le chemin"; exit; fi
 	@if [ -n "$(FUZZ_UBSAN)" ]; then export AFL_USE_UBSAN=1; else export AFL_USE_ASAN=1; fi
 	@echo "ASAN $${AFL_USE_ASAN}"
