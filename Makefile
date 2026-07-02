@@ -67,6 +67,28 @@ clean:
 	-rm -f  $(EXECS) $(SRCDIR)/$(RES_LEX) $(OBJDIR)/*
 
 .ONESHELL: #https://www.gnu.org/software/make/manual/html_node/One-Shell.html
+test: clean all
+	@declare -a texts=("Tests Simples\n" "Algos\n" "Testes robustesse\n")
+	@declare -a locations=("Tests" "Tests/algos" "Tests/testes_robustesse")
+
+	@len=$$(expr $${#locations[*]} - 1)
+	@for i in $$(seq 0 $${len}); do
+		printf "$${texts[$${i}]}"
+		for test in $${locations[$${i}]}/*.txt; do
+
+			if [ -d $${test} ]; then continue; fi
+
+			echo $${test}
+			cat $${test}
+			echo
+			name="$$(basename $${test})"
+			name="$${name%.*}"
+			./$(EXEC) $${test}
+			echo
+		done
+	done
+
+
 verif_valgrind:
 	@if [ ! -e valgrind_resultats ] || [ ! -d valgrind_resultats ]; then mkdir valgrind_resultats; fi
 	@$(MAKE) debug
