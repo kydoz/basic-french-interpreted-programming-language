@@ -4,6 +4,10 @@ This document details the available makefile targets/variables.
 
 ### Targets
 
+#### test
+
+Builds the project with the selected binary (see **Variables**) and then proceeds to run every test case.  
+
 #### debug
 
 Rebuilds the project with debug symbols enables and optimisations set to their lowest.  
@@ -35,6 +39,8 @@ A target which runs [AFL++](https://github.com/aflplusplus/aflplusplus) on the i
 If defined, the lexema verifier (`test_lexeme`) is built.  
 
 #### COMP
+
+Auxiliary variable used for building a compiled program (more about it [here](https://github.com/kydoz/academic-interpreted-programming-language/blob/main/comp.md)).
 
 #### UBSAN
 
