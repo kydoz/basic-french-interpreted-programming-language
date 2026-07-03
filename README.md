@@ -1,4 +1,4 @@
-# Academic Interpreted Programming Language
+# Basic Interpreted Programming Language
 
 An Interpreted Programming Language I worked on during my undergraduate studies (with an experimental "compiled" mode, more on that [here](https://github.com/kydoz/academic-interpreted-programming-language/blob/main/comp.md)). Nowadays I primarily work on the afore mentioned compiled mode and the overall robustness of the program.  
 
