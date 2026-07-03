@@ -1,4 +1,4 @@
-# Langage de Programmation Interprété Académique
+# Langage de Programmation Interprété de Base
 
 Un langage de programmation interprété sur lequel j'ai travaillé pendant mes études (avec un mode "compilé" expérimental, plus de détails [ici](https://github.com/kydoz/academic-interpreted-programming-language/blob/main/comp.md)). Actuellement je travaille principalement sur ce mode compilé susmentionné et sur la robustesse globale du programme.  
 
